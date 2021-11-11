@@ -1,34 +1,23 @@
-@import '@fontsource/fira-mono';
-
 :root {
-	font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	--font-mono: 'Fira Mono', monospace;
-	--pure-white: #ffffff;
-	--primary-color: #b9c6d2;
-	--secondary-color: #d0dde9;
-	--tertiary-color: #edf0f8;
-	--accent-color: #ff3e00;
-	--heading-color: rgba(0, 0, 0, 0.7);
-	--text-color: #444444;
-	--background-without-opacity: rgba(255, 255, 255, 0.7);
-	--column-width: 42rem;
-	--column-margin-top: 4rem;
+	--light: #f1e9e9;
+	--dark: #202124;
+	--yellow: #ecec1a;
 }
 
+html {
+  font-size: 62.5%;
+}
+ 
 body {
+	font-family: 'Nunito', sans-serif;
+	font-size: 1.5rem;
 	min-height: 100vh;
 	margin: 0;
-	background-color: var(--primary-color);
-	background: linear-gradient(
-		180deg,
-		var(--primary-color) 0%,
-		var(--secondary-color) 10.45%,
-		var(--tertiary-color) 41.35%
-	);
+	background-color: var(--light);
+	color: var(--dark);
 }
 
-body::before {
+/*  body::before {
 	content: '';
 	width: 80vw;
 	height: 100vh;
@@ -42,7 +31,7 @@ body::before {
 		rgba(255, 255, 255, 0) 100%
 	);
 	opacity: 0.05;
-}
+} */
 
 #svelte {
 	min-height: 100vh;
@@ -50,19 +39,11 @@ body::before {
 	flex-direction: column;
 }
 
-h1,
-h2,
-p {
-	font-weight: 400;
-	color: var(--heading-color);
-}
-
 p {
 	line-height: 1.5;
 }
 
 a {
-	color: var(--accent-color);
 	text-decoration: none;
 }
 
@@ -70,16 +51,7 @@ a:hover {
 	text-decoration: underline;
 }
 
-h1 {
-	font-size: 2rem;
-	text-align: center;
-}
-
-h2 {
-	font-size: 1rem;
-}
-
-pre {
+/* pre {
 	font-size: 16px;
 	font-family: var(--font-mono);
 	background-color: rgba(255, 255, 255, 0.45);
@@ -88,13 +60,7 @@ pre {
 	padding: 0.5em;
 	overflow-x: auto;
 	color: var(--text-color);
-}
-
-input,
-button {
-	font-size: inherit;
-	font-family: inherit;
-}
+} */
 
 button:focus:not(:focus-visible) {
 	outline: none;
@@ -105,3 +71,50 @@ button:focus:not(:focus-visible) {
 		font-size: 2.4rem;
 	}
 }
+
+.dark {
+  background-color: var(--dark)!important;
+  color: var(--light) !important;
+}
+
+.dark-bulb {
+  color: var(--yellow);
+}
+
+.yellow-border {
+  border: 2px solid var(--yellow)!important;
+}
+
+.white-border {
+	border: 2px solid var(--light)!important;
+}
+
+
+
+
+
+/* .loader {
+	position: absolute;
+	visibility: visible;
+	top: 0;
+	left: 0;
+	min-height: 100vh;
+	width: 100%;
+	z-index: 100;
+	background-color: var(--dark);
+	transition: opacity 0.1s ease;
+	animation: loader 4s 1 forwards;
+}
+
+@keyframes loader {
+  0% {
+    opacity: 1;
+  }
+  100% {
+	opacity: 0;
+	z-index: -100;
+	visibility: hidden
+  }
+} */
+
+
