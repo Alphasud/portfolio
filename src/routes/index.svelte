@@ -51,9 +51,6 @@
 	};
 </script>
 
-
-
-
 <svelte:head>
 	<title>Charles Denneulin</title>
 </svelte:head>
@@ -61,12 +58,12 @@
 	<Presentation data={currentLanguageData} />
 	<Techno data={currentLanguageData} />	
 </div>
-<Projects projects={currentLanguageProjects} lang={lang}/>
+<Projects projects={currentLanguageProjects.reverse()} lang={lang}/>
 
 	
 
 <style lang="scss">
-	$dark: #202124;
+$dark: #202124;
 
 .top {
   display: flex;

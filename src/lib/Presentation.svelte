@@ -1,8 +1,13 @@
 <script>
+  import { darkTheme } from "/src/store.js";
+	let darkMode;
+  darkTheme.subscribe(value => {
+    darkMode = value;
+  });
     export let data;
 </script>
 {#each data as item}
-<section class="presentation">
+<section class={darkMode ? "presentation white-border" : "presentation"}>
     <div class='presentation__top'>
         <div class='presentation__top__left'>
             <img class='presentation__top__left__photo' src={item.photo} alt=''>

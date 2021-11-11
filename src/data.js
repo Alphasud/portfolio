@@ -164,7 +164,7 @@ const projects = [
 			{
 				id: '8',
 				title: 'FishEye',
-				description: `Intégration d'une maquette, orientée accessibilité (aria),  plusieurs features: filter, form, lightbox, sort, like button.`,
+				description: `Intégration d'une maquette, orientée accessibilité (aria), filter, form, lightbox, sort, like button.`,
 				techno: 'HTML5 / SCSS / Vanilla JS / ARIA / ESLint',
 				photo: '/img/projet6.png',
 				website: 'https://alphasud.github.io/CharlesDenneulin_6_18022021/',
@@ -200,7 +200,7 @@ const projects = [
 			{
 				id: '12',
 				title: 'Argent Bank',
-				description: `Log in, log out, user profile, CRUD, API`,
+				description: `JWT Auth, user profile, CRUD, API`,
 				techno: 'HTML5 / CSS / ReactJS / ReactRouter / Redux',
 				photo: '/img/projet13.png',
 				website: 'none',
@@ -292,7 +292,7 @@ const projects = [
 			{
 				id: '8',
 				title: 'FishEye',
-				description: `Mockup integration, accessibility (aria),  several features: filter, form, lightbox, sort, like button.`,
+				description: `Mockup integration, accessibility (aria), filter, form, lightbox, sort, like button.`,
 				techno: 'HTML5 / SCSS / Vanilla JS / ARIA / ESLint',
 				photo: '/img/projet6.png',
 				website: 'https://alphasud.github.io/CharlesDenneulin_6_18022021/',
@@ -328,7 +328,7 @@ const projects = [
 			{
 				id: '12',
 				title: 'Argent Bank',
-				description: `Log in, log out, user profile, CRUD, API`,
+				description: `JWT Auth, user profile, CRUD, API`,
 				techno: 'HTML5 / CSS / ReactJS / ReactRouter / Redux',
 				photo: '/img/projet13.png',
 				website: 'none',
@@ -420,7 +420,7 @@ const projects = [
 			{
 				id: '8',
 				title: 'FishEye',
-				description: `Integración de un diseño, accesibilidad (aria),  varios features: filter, form, lightbox, sort, botón de like.`,
+				description: `Integración de un diseño, accesibilidad (aria), filter, form, lightbox, sort, botón de like.`,
 				techno: 'HTML5 / SCSS / Vanilla JS / ARIA / ESLint',
 				photo: '/img/projet6.png',
 				website: 'https://alphasud.github.io/CharlesDenneulin_6_18022021/',
@@ -456,7 +456,7 @@ const projects = [
 			{
 				id: '12',
 				title: 'Argent Bank',
-				description: `Log in, log out, user profile, CRUD, API`,
+				description: `JWT Auth, user profile, CRUD, API`,
 				techno: 'HTML5 / CSS / ReactJS / ReactRouter / Redux',
 				photo: '/img/projet13.png',
 				website: 'none',

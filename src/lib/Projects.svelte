@@ -1,4 +1,9 @@
 <script>
+    import { darkTheme } from "/src/store.js";
+	let darkMode;
+    darkTheme.subscribe(value => {
+        darkMode = value;
+    });
     export let projects;
     export let lang;
     let title;
@@ -15,9 +20,8 @@
         default:
             title = 'Portfolio (ordre anti-chronologique)';
     }
-    let isWebsite
 </script>
-<section class="projects">
+<section class={darkMode ? "projects white-border" : "projects"}>
     <h1 class="projects__title">{title}</h1>
     <div class="projects__elements">
         {#each projects as element}
@@ -28,20 +32,21 @@
             <h2 class='projects__elements__item__title'>{element.title}</h2>
             <p class='projects__elements__item__techno'>{element.techno}</p>
             <p class='projects__elements__item__description'>{element.description}</p>
-            <a class='projects__elements__item__link' href={element.sourcecode} target='_blank' rel='noopener noreferrer'>
+            <a class={darkMode ? 'projects__elements__item__link dark-button' : 'projects__elements__item__link'} href={element.sourcecode} target='_blank' rel='noopener noreferrer'>
             <span>
                 <p>Source Code</p>
                 <p>Source Code</p>
             </span>
             </a>
-    {isWebsite
-      ? `<a class='projects__elements__item__link' href={element.website} target='_blank' rel='noopener noreferrer'>
+    {#if element.website !== 'none'}
+        <a class={darkMode ? 'projects__elements__item__link dark-button' : 'projects__elements__item__link'} href=${element.website} target='_blank' rel='noopener noreferrer'>
           <span>
             <p>Website</p>
             <p>Website</p>
           </span>
-        </a>`
-      : ``}
+        </a>
+    {/if}
+      
 </article>
 {/each}
     </div>
@@ -59,7 +64,6 @@ $yellow: #ecec1a;
   border-radius: 10px;
   padding: 1rem;
   flex-basis: 100%;
-  transition: all 0.25s ease-in;
 
   &__elements {
     display: flex;
@@ -80,18 +84,19 @@ $yellow: #ecec1a;
         text-align: center;
         font-style: italic;
         line-height: 1.5;
-        margin-bottom: 1rem;
+        margin: 0 0 1rem 0;
       }
 
       &__techno {
         text-align: center;
         height: auto;
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin:0;
       }
 
       &__title {
         height: 4rem;
+        margin: 0;
       }
 
       &__link {
@@ -115,6 +120,7 @@ $yellow: #ecec1a;
             display: block;
             transition: transform 0.5s;
             line-height: 0.5em;
+            margin: 0;
           }
 
           p:last-child {
@@ -139,7 +145,7 @@ $yellow: #ecec1a;
       &__image {
         width: 20rem;
         height: 20rem;
-        overflow: hidden;
+        //overflow: hidden;
         margin-bottom: 1rem;
         transition: transform 0.2s ease;
         &:hover {
@@ -158,7 +164,7 @@ $yellow: #ecec1a;
     }
   }
 }
-.dark .projects__elements__item__link {
+.dark-button{
   color: $yellow;
   border: 2px solid $yellow;
   &:hover {

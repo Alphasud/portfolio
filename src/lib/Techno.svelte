@@ -1,6 +1,13 @@
-<section class="techno">
+<script>
+import { darkTheme } from "/src/store.js";
+let darkMode;
+darkTheme.subscribe(value => {
+darkMode = value;
+});
+</script>
+<section class={darkMode ? "techno white-border" : "techno"}>
     <div class='techno__top'>
-        <h1>Technos</h1>
+        <h1>Stack</h1>
         <div class='techno__top__stack'>
             <div class='techno__top__stack__row'>
                 <i class="fab fa-html5 fa-4x"></i>
@@ -30,11 +37,10 @@ $dark: #202124;
   border: 2px solid $dark;
   border-radius: 10px;
   padding: 1rem;
-  transition: all 0.25s ease-in;
   &__top {
     margin-top: 2rem;
     width: 100%;
-    h1 {font-size: 3.5rem;}
+    h1 {font-size: 3.5rem;margin: 0;}
 
     &__stack {
       margin: 2rem 0.5rem 0 0.5rem;

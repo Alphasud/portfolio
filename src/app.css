@@ -5,33 +5,28 @@
 }
 
 html {
+  scroll-behavior: smooth;
   font-size: 62.5%;
 }
  
 body {
 	font-family: 'Nunito', sans-serif;
-	font-size: 1.5rem;
 	min-height: 100vh;
 	margin: 0;
 	background-color: var(--light);
 	color: var(--dark);
-}
-
-/*  body::before {
-	content: '';
-	width: 80vw;
+	box-sizing: border-box;
+	cursor: default;
 	height: 100vh;
-	position: absolute;
-	top: 0;
-	left: 10vw;
-	z-index: -1;
-	background: radial-gradient(
-		50% 50% at 50% 50%,
-		var(--pure-white) 0%,
-		rgba(255, 255, 255, 0) 100%
-	);
-	opacity: 0.05;
-} */
+	font-weight: 300;
+	line-height: 1.5;
+	background: #FFDEE9;
+	background: linear-gradient(45deg, #FFDEE9 0%, #d0fcfa 100%);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	font-size: 1.6rem;
+	transition: all 0.25s ease-in;
+}
 
 #svelte {
 	min-height: 100vh;
@@ -44,32 +39,17 @@ p {
 }
 
 a {
-	text-decoration: none;
+  text-decoration: underline;
+  color: currentColor;
+  outline: none;
 }
 
 a:hover {
 	text-decoration: underline;
 }
 
-/* pre {
-	font-size: 16px;
-	font-family: var(--font-mono);
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
-	overflow-x: auto;
-	color: var(--text-color);
-} */
-
 button:focus:not(:focus-visible) {
 	outline: none;
-}
-
-@media (min-width: 720px) {
-	h1 {
-		font-size: 2.4rem;
-	}
 }
 
 .dark {
