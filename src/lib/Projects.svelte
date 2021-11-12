@@ -1,8 +1,12 @@
 <script>
-    import { darkTheme } from "/src/store.js";
+    import { darkTheme, isFormVisible } from "/src/store.js";
 	let darkMode;
     darkTheme.subscribe(value => {
         darkMode = value;
+    });
+    let isVisible;
+    isFormVisible.subscribe(value => {
+      isVisible = value;
     });
     export let projects;
     export let lang;
@@ -21,7 +25,7 @@
             title = 'Portfolio (ordre anti-chronologique)';
     }
 </script>
-<section class={darkMode ? "projects white-border" : "projects"}>
+<section class="{darkMode ? "projects white-border" : "projects"} {isVisible ? "blur" : ""}">
     <h1 class="projects__title">{title}</h1>
     <div class="projects__elements">
         {#each projects as element}
@@ -81,6 +85,7 @@ $yellow: #ecec1a;
 
       &__description {
         height: auto;
+        width: 90%;
         text-align: center;
         font-style: italic;
         line-height: 1.5;
@@ -90,12 +95,15 @@ $yellow: #ecec1a;
       &__techno {
         text-align: center;
         height: auto;
+        width: 90%;
         font-weight: 700;
         margin:0;
       }
 
       &__title {
+        text-align: center;
         height: 4rem;
+        width: 30rem;
         margin: 0;
       }
 

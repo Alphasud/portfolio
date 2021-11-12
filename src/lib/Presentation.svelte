@@ -1,13 +1,20 @@
 <script>
   import { darkTheme } from "/src/store.js";
+  import { isFormVisible } from "/src/store.js";
+
 	let darkMode;
   darkTheme.subscribe(value => {
     darkMode = value;
   });
-    export let data;
+  let isVisible;
+  isFormVisible.subscribe(value => {
+    isVisible = value;
+  });
+
+  export let data;
 </script>
 {#each data as item}
-<section class={darkMode ? "presentation white-border" : "presentation"}>
+<section class="{darkMode ? "presentation white-border" : "presentation"} {isVisible ? "blur" : ""}">
     <div class='presentation__top'>
         <div class='presentation__top__left'>
             <img class='presentation__top__left__photo' src={item.photo} alt=''>
@@ -23,7 +30,7 @@
             <i class="fas fa-scroll fa-2x"></i>
         </a>
         <span class='resume-message'>{item.toolTip}</span>
-        <span class='presentation__social__mail'>
+        <span class='presentation__social__mail' on:click={() => isFormVisible.set(true)}>
             <i class="fas fa-envelope fa-2x"></i>
             <i class="fas fa-envelope fa-2x"></i>
         </span>
@@ -43,6 +50,7 @@
 
 <style lang="scss">
 $dark: #202124;
+
 .resume-message {
   position: absolute;
   top: -6.5rem;
@@ -75,8 +83,8 @@ $dark: #202124;
 
   &__top {
     display: flex;
-    //flex-wrap: wrap;
     align-items: center;
+    margin-bottom: 2rem;
 
     &__left {
       &__photo {
@@ -215,9 +223,18 @@ $dark: #202124;
     }
   }
 }    
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
   .presentation {
     flex-basis: 100%;
+    margin-right: 0;   
+    &__social {
+      margin: 0 auto;
+      justify-content: center;
+    }
+    &__top {flex-direction: column;}
+    &__top__right {
+      text-align: center;
+    }
   }
 }
 </style>

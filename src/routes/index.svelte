@@ -4,13 +4,15 @@
 <script>
 	import Presentation from '$lib/Presentation.svelte';
 	import Techno from '$lib/Techno.svelte';
+	import ContactForm from '$lib/ContactForm.svelte';
 	import Projects from '$lib/Projects.svelte';
 	import { currentLang } from "/src/store.js";
-	import {data, projects} from '../data.js';
+	import {data, projects, contact} from '../data.js';
 
 	let lang;
 	let currentLanguageData;
-	let currentLanguageProjects
+	let currentLanguageProjects;
+	let currentLanguageContact;
 
   	currentLang.subscribe(value => {
     	lang = value;
@@ -24,12 +26,18 @@
 			currentLanguageProjects = projects.flatMap(el => {
 			return el.french;
 			});
+			currentLanguageContact = contact.flatMap(el => {
+			return el.french;
+			});
 		break;
 			case 'english':
 			currentLanguageData = data.flatMap(el => {
 				return el.english;
 			});
 			currentLanguageProjects = projects.flatMap(el => {
+			return el.english;
+			});
+			currentLanguageContact = contact.flatMap(el => {
 			return el.english;
 			});
 		break;
@@ -40,6 +48,9 @@
 			currentLanguageProjects = projects.flatMap(el => {
 			return el.spanish;
 			});
+			currentLanguageContact = contact.flatMap(el => {
+			return el.spanish;
+			});
 		break;
 		default:
 			currentLanguageData = data.flatMap(el => {
@@ -48,6 +59,9 @@
 			currentLanguageProjects = projects.flatMap(el => {
 			return el.french;
 			});	
+			currentLanguageContact = contact.flatMap(el => {
+			return el.french;
+			});
 	};
 </script>
 
@@ -59,6 +73,7 @@
 	<Techno data={currentLanguageData} />	
 </div>
 <Projects projects={currentLanguageProjects.reverse()} lang={lang}/>
+<ContactForm contact={currentLanguageContact}/>
 
 	
 
@@ -70,7 +85,7 @@ $dark: #202124;
   flex-wrap: nowrap;
   flex-basis: 100%;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .top {
     flex-wrap: wrap;
   }

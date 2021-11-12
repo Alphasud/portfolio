@@ -1,5 +1,6 @@
 <script>
 	import Header from '$lib/Header.svelte';
+	import Footer from '$lib/Footer.svelte';
 	import '../app.css';
 	import { fade, fly } from 'svelte/transition';
   	import { darkTheme } from "/src/store.js";
@@ -15,6 +16,7 @@
 	let slide = false;
 	setTimeout(() => {slide = true}, 100);
 </script>
+
 <div class={!darkMode ? 'body-wrapper' : 'body-wrapper dark'}>
 <div class={!darkMode ? 'wrapper' : 'wrapper dark'}>
 	{#if visible}
@@ -28,11 +30,7 @@
 	<main>
 		<slot />
 	</main>
-	<footer>
-		<p>Charles Denneulin <i class="far fa-copyright fa-rotate-180"></i>{new Date().getFullYear()}.</p>
-		<p>Happily coded with SvelteKit :) -> <a href="https://github.com/Alphasud/portfolio" target="_blank" rel="noopener noreferrer">Source Code</a></p>
-		<p>Thanks <a href="https://kit.svelte.dev">kit.svelte.dev</a></p>
-	</footer>
+	<Footer />
 </div>
 </div>
 
@@ -77,19 +75,5 @@
   		display: flex;
   		flex-direction: column;
   		transition: all 0.1s ease;
-	}
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 40px;
-		p {margin: 0;}
-		a {font-weight: bold;}
-	}
-	@media (min-width: 480px) {
-		footer {
-			padding: 40px 0;
-		}
 	}
 </style>

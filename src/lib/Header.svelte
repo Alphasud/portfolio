@@ -1,16 +1,20 @@
 <script>
   import DarkModeToggle from '$lib/DarkModeToggle.svelte';
-  import { darkTheme, currentLang } from "/src/store.js";
+  import { darkTheme, currentLang, isFormVisible } from "/src/store.js";
 
   let darkMode;
   darkTheme.subscribe(value => {
     darkMode = value;
   });
 
+  let isVisible;
+  isFormVisible.subscribe(value => {
+    isVisible = value;
+  });
   let current = "fr";
 </script>
 
-<header class="header">
+<header class={isVisible ? "header blur" : "header"}>
   <DarkModeToggle />
   <li class:white-border={darkMode} class:selected="{current === 'fr'}" class="switch" on:click={() => {current = 'fr'; currentLang.set('french')}}>FR</li>
   <li class:white-border={darkMode} class:selected="{current === 'en'}" class="switch" on:click={() => {current = 'en'; currentLang.set('english')}}>EN</li>
