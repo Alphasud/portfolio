@@ -1,5 +1,6 @@
 <script>
-    import { darkTheme, isFormVisible } from "/src/store.js";
+    import { element } from "svelte/internal";
+import { darkTheme, isFormVisible } from "/src/store.js";
 	let darkMode;
     darkTheme.subscribe(value => {
         darkMode = value;
@@ -30,7 +31,7 @@
     <div class="projects__elements">
         {#each projects as element}
         <article class='projects__elements__item'>
-            <a href={element.website} class='projects__elements__item__image'target='_blank' rel='noopener noreferrer'>
+            <a href={element.website !== 'none' ? element.website : element.sourcecode} class='projects__elements__item__image'target='_blank' rel='noopener noreferrer'>
                 <img src={element.photo} alt={element.title}>
             </a>
             <h2 class='projects__elements__item__title'>{element.title}</h2>
@@ -68,6 +69,7 @@ $yellow: #ecec1a;
   border-radius: 10px;
   padding: 1rem;
   flex-basis: 100%;
+  transition: all 0.25s ease-in;
 
   &__elements {
     display: flex;

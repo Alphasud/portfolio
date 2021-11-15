@@ -46,6 +46,7 @@ $dark: #202124;
   border: 2px solid $dark;
   border-radius: 10px;
   padding: 1rem;
+  transition: all 0.25s ease-in;
   &__top {
     margin-top: 2rem;
     width: 100%;
@@ -67,7 +68,7 @@ $dark: #202124;
           justify-content: space-between;
           i {
             opacity: 0;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             @for $i from 1 through 4 {
               &:nth-child(#{$i}) {
                 animation: pop 0.8s ease 1 normal forwards;
@@ -80,7 +81,7 @@ $dark: #202124;
           justify-content: space-evenly;
           i {
             opacity: 0;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             @for $i from 1 through 4 {
               &:nth-child(#{$i}) {
                 animation: pop 0.8s ease 1 normal forwards;

@@ -29,7 +29,7 @@ $light: #f1e9e9;
 header {
   display: flex;
   align-items: center;
-  transition: all 0.1s ease;
+  transition: all 0.25s ease;
   height: 8rem;
   margin-left: 1rem;
       li { text-decoration: none;list-style: none; }

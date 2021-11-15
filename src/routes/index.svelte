@@ -9,16 +9,11 @@
 	import { currentLang } from "/src/store.js";
 	import {data, projects, contact} from '../data.js';
 
-	let lang;
 	let currentLanguageData;
 	let currentLanguageProjects;
 	let currentLanguageContact;
 
-  	currentLang.subscribe(value => {
-    	lang = value;
-  	});
-
-	$: switch(lang) {
+	$: switch($currentLang) {
 		case 'french':
 			currentLanguageData = data.flatMap(el => {
 				return el.french;
@@ -72,8 +67,8 @@
 	<Presentation data={currentLanguageData} />
 	<Techno data={currentLanguageData} />	
 </div>
-<Projects projects={currentLanguageProjects.reverse()} lang={lang}/>
-<ContactForm contact={currentLanguageContact}/>
+<Projects projects={currentLanguageProjects.reverse()} lang={$currentLang}/>
+<ContactForm contact={currentLanguageContact} lang={$currentLang}/>
 
 	
 

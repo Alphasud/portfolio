@@ -1,26 +1,175 @@
 <script>
     export let contact;
+    export let lang;
     import { isFormVisible } from "/src/store.js";
-	let isVisible;
-    isFormVisible.subscribe(value => {
-        isVisible = value;
-    });
 
+    let email = '';
+    let message = '';
+    let feedbackMessage = '';
+
+    let isEmailValid ;
+    let isMessageValid;
+    let isSectionValid;
+    let isFormSentSuccessfully;
+
+    /* Email and message validations */
+    const handleEmail = () => {
+        const value = email.trim();
+        value.match(/^\S+@\S+\.\S+$/) && value ? isEmailValid = true : isEmailValid = false;
+    }
+    const handleMessage = () => {
+        const value = message.trim();
+        value ? isMessageValid = true : isMessageValid = false;
+    }
+    const handleFormValidationStyle = () => {
+        if(isMessageValid && isEmailValid) {isSectionValid = true}
+        else {isSectionValid = false}
+    }
+    /* Handle the closing of form and reset its style and values */
+    const handleClose = () => {
+        isFormVisible.set(false);
+        email = '';
+        message = '';
+        isEmailValid = undefined;
+        isMessageValid = undefined;
+        isSectionValid = undefined;
+        isFormSentSuccessfully = undefined;
+    }
+    /* Handle errors messages, success messages and general validation styles */
+    const applyErrorClass = (value) => {
+        if(value === true) {return 'error-message__email' }
+        else if(value === false) {return 'error-message__email show' }
+        else {return 'error-message__email'}
+    }
+    const applyInputClass = (value) => {
+        if(value === true) {return 'contact__form__email valid-field' }
+        else if(value === false) {return 'contact__form__email invalid-field' }
+        else {return 'contact__form__email'}
+    }
+    const applyMessageInputClass = (value) => {
+        if(value === true) {return 'contact__form__message valid-field' }
+        else if(value === false) {return 'contact__form__message invalid-field' }
+        else {return 'contact__form__message'}
+    }
+    const applySucessIcon = (value) => {
+        if(value === true) {return 'success-message__email show' }
+        else {return 'success-message__email' }
+    }
+    const applyFormClass = (value) => {
+        if(value === true) {return 'contact valid-field'}
+        else if(value === false) { return 'contact invalid-field'}
+        else { return 'contact'}
+    }
+    const applyButtonClass = (value) => {
+        if(value === true) {return 'contact__form__button valid-field'}
+        else if(value === false) { return 'contact__form__button invalid-field'}
+        else { return 'contact__form__button'}
+    }
+    const setFeedbackMessage = (value) => {
+        if(value === true) {
+            switch(lang) {
+                case 'french':
+                    feedbackMessage = 'All Good &#128293 Merci pour votre message &#128578 !';
+                break;
+                case 'english':
+                    feedbackMessage = 'All Good &#128293 Thank you for your message &#128578 !';
+                break;
+                case 'spanish':
+                    feedbackMessage = 'All Good &#128293 Gracias por su mensaje &#128578 !';
+                break;
+                default:
+                    feedbackMessage = 'All Good &#128293 Merci pour votre message &#128578 !';
+            }
+            return feedbackMessage;
+        } else if(value === false) {
+            switch(lang) {
+                case 'french':
+                    feedbackMessage = `Ohlala... &#128565 Il y a eu un soucis avec l'envoi du message. Vous pourriez peut-être ré-essayer ?`;
+                break;
+                case 'english':
+                    feedbackMessage = `Ohlala... &#128565 Something went wrong. Would you be so kind to try again ?`;
+                break;
+                case 'spanish':
+                    feedbackMessage = `Ohlala... &#128565 Hubo un problema con el envío del mensaje. Puedes intentar otra vez ?`;
+                break;
+                    default:
+                    feedbackMessage = `Ohlala... &#128565 Il y a eu un soucis avec l'envoi du message. Vous pourriez peut-être ré-essayer ?`;
+            }
+            return feedbackMessage;
+        } else {
+            feedbackMessage = '';
+            return feedbackMessage;
+        }
+    }
+    /* Handles submission of form */
+    async function handleSubmit(event) {
+        handleEmail();
+        handleMessage();
+        handleFormValidationStyle();
+        if(isEmailValid && isMessageValid) {
+            const data = new FormData(event.target);
+            fetch("https://formspree.io/f/mpzkbdvd", {
+                method: 'POST',
+                body: data,
+                headers: {
+                Accept: 'application/json',
+            },
+            }).then((response) => {
+                if(response.status !== 200) {
+                    isFormSentSuccessfully = false;
+                } else {
+                    isFormSentSuccessfully = true;
+                    email = '';
+                    message = '';
+                    setTimeout(() => {
+                        handleClose();
+                    }, 4000);
+                }
+            }).catch((error) => {
+                console.log(error);
+                isFormSentSuccessfully = false;
+            });     
+        }
+}
 </script>
-{#if isVisible}
+{#if $isFormVisible}
 {#each contact as element}
-<div class="contact">
-<form class='contact__form' id="my-form" action="https://formspree.io/f/mpzkbdvd" method="POST">
-    <span class='contact__form__close' on:click={() => isFormVisible.set(false)}><i class="fas fa-times fa-2x"></i></span>
-    <label class='contact__form__label__email'>{element.email}:</label>
-    <input class='contact__form__email' type="email" name="email" />
-    <p class='error-message__email'>{element.errorEmail}</p>
-    <p class='success-message__email'>👍</p>
-    <label class='contact__form__label__message'>{element.message}:</label>
-    <textarea class='contact__form__message' type="text" name="message"></textarea>
-    <p class='error-message__message'>{element.errorMessage}</p>
-    <button class='contact__form__button' id="my-form-button">{element.bouton}</button>
-    <p class='contact__form__status' id="my-form-status"></p>
+<div class={applyFormClass(isSectionValid)}>
+<form class='contact__form' on:submit|preventDefault="{handleSubmit}" id="my-form">
+    <div class="{isFormSentSuccessfully ? 'container hidden' : 'container'}">
+    <span class='contact__form__close' on:click={handleClose}><i class="fas fa-times fa-2x"></i></span>
+    <label 
+        for='input-email' 
+        class='contact__form__label__email'>
+        {element.email}:
+    </label>
+    <input 
+        id='input-email' 
+        bind:value={email} 
+        class={applyInputClass(isEmailValid)} 
+        type="email" 
+        name="email" 
+        on:input="{() => {handleEmail(); handleFormValidationStyle()}}" />
+
+    <p class={applyErrorClass(isEmailValid)}>{element.errorEmail}</p>
+    <p class={applySucessIcon(isEmailValid)}>👍</p>
+    <label 
+        for='input-message' 
+        class='contact__form__label__message'>
+        {element.message}:
+    </label>
+    <textarea 
+        id='input-message' 
+        bind:value={message} 
+        class={applyMessageInputClass(isMessageValid)} 
+        type="text" 
+        name="message" 
+        on:input="{() => {handleMessage(); handleFormValidationStyle()}}"></textarea>
+
+    <p class={applyErrorClass(isMessageValid)}>{element.errorMessage}</p>
+    <button type='submit' class={applyButtonClass(isSectionValid)} id="my-form-button">{element.bouton}</button>
+    </div>
+    <p class='contact__form__status'>{@html setFeedbackMessage(isFormSentSuccessfully)}</p>
 </form>
 </div>
 {/each}
@@ -78,11 +227,16 @@
       padding: 0.5rem;
     }
     &__status {
+      text-align: center;
       margin-top: 1rem;
     }
   }
 }
-
+.container {
+    display: flex;
+    flex-direction: column;
+}
+.hidden { display: none;}
 .invalid {
   opacity: 0.8;
   color:crimson;
@@ -108,8 +262,12 @@
 .success-message__email {
   display: none;
   position: absolute;
-  top: 5.5rem;
+  top: 4.25rem;
   right: 10%;
+}
+
+.show {
+    display: block;
 }
 @media screen and (max-width: 700px) {
     .contact {
