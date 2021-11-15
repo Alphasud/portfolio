@@ -1,5 +1,4 @@
 <script>
-    import { element } from "svelte/internal";
 import { darkTheme, isFormVisible } from "/src/store.js";
 	let darkMode;
     darkTheme.subscribe(value => {
@@ -44,7 +43,7 @@ import { darkTheme, isFormVisible } from "/src/store.js";
             </span>
             </a>
     {#if element.website !== 'none'}
-        <a class={darkMode ? 'projects__elements__item__link dark-button' : 'projects__elements__item__link'} href=${element.website} target='_blank' rel='noopener noreferrer'>
+        <a class={darkMode ? 'projects__elements__item__link dark-button' : 'projects__elements__item__link'} href={element.website} target='_blank' rel='noopener noreferrer'>
           <span>
             <p>Website</p>
             <p>Website</p>
