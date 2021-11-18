@@ -12,33 +12,49 @@
   });
 
   export let data;
+  export let lang;
+
+  let tooltip;
+    $: switch(lang) {
+        case 'french' :
+            tooltip = 'Mon CV';
+            break;
+        case 'english':
+            tooltip = 'Resume (in french)';
+            break;
+        case 'spanish':
+            tooltip = 'Currículum (en francés)';
+            break;
+        default:
+            tooltip = 'Mon CV';
+    }
 </script>
 {#each data as item}
 <section class="{darkMode ? "presentation white-border" : "presentation"} {isVisible ? "blur" : ""}">
     <div class='presentation__top'>
         <div class='presentation__top__left'>
-            <img class='presentation__top__left__photo' src={item.photo} alt=''>
+            <img class='presentation__top__left__photo' src={item.profilePicture.formats.medium.url} alt={item.profilePicture.alternativeText}>
         </div>
         <div class='presentation__top__right'>
-            <h1 class='presentation__top__right__name'>{item.name} {item.fName}</h1>
-            <h2 class='presentation__top__right__tagline'>{item.tagline}</h2>
+            <h1 class='presentation__top__right__name'>{item.firstName} {item.name}</h1>
+            <h2 class='presentation__top__right__tagline'>{item.title}</h2>
         </div>
     </div>
     <div class='presentation__social'>
-        <a class='resume-icon' href={item.resume} target="_blank" rel="noopener noreferrer">
+        <a class='resume-icon' href={item.resumeLink} target="_blank" rel="noopener noreferrer">
             <i class="fas fa-scroll fa-2x"></i>
             <i class="fas fa-scroll fa-2x"></i>
         </a>
-        <span class='resume-message'>{item.toolTip}</span>
+        <span class='resume-message'>{tooltip}</span>
         <span class='presentation__social__mail' on:click={() => isFormVisible.set(true)}>
             <i class="fas fa-envelope fa-2x"></i>
             <i class="fas fa-envelope fa-2x"></i>
         </span>
-        <a href={item.github} target="_blank" rel="noopener noreferrer">
+        <a href={item.gitHubLink} target="_blank" rel="noopener noreferrer">
             <i class="fab fa-github fa-2x"></i>
             <i class="fab fa-github fa-2x"></i>
         </a>
-        <a href={item.linkedin} target="_blank" rel="noopener noreferrer">
+        <a href={item.linkedInLink} target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin fa-2x"></i>
             <i class="fab fa-linkedin fa-2x"></i>
         </a>

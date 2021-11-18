@@ -30,20 +30,20 @@ import { darkTheme, isFormVisible } from "/src/store.js";
     <div class="projects__elements">
         {#each projects as element}
         <article class='projects__elements__item'>
-            <a href={element.website !== 'none' ? element.website : element.sourcecode} class='projects__elements__item__image'target='_blank' rel='noopener noreferrer'>
-                <img src={element.photo} alt={element.title}>
+            <a href={element.websiteLink ? element.websiteLink : element.repoLink} class='projects__elements__item__image'target='_blank' rel='noopener noreferrer'>
+                <img src={element.projectPicture.formats.small.url} alt={element.projectPicture.alternativeText}>
             </a>
-            <h2 class='projects__elements__item__title'>{element.title}</h2>
-            <p class='projects__elements__item__techno'>{element.techno}</p>
+            <h2 class='projects__elements__item__title'>{element.name}</h2>
+            <p class='projects__elements__item__techno'>{element.stack}</p>
             <p class='projects__elements__item__description'>{element.description}</p>
-            <a class={darkMode ? 'projects__elements__item__link dark-button' : 'projects__elements__item__link'} href={element.sourcecode} target='_blank' rel='noopener noreferrer'>
+            <a class={darkMode ? 'projects__elements__item__link dark-button' : 'projects__elements__item__link'} href={element.repoLink} target='_blank' rel='noopener noreferrer'>
             <span>
                 <p>Source Code</p>
                 <p>Source Code</p>
             </span>
             </a>
-    {#if element.website !== 'none'}
-        <a class={darkMode ? 'projects__elements__item__link dark-button' : 'projects__elements__item__link'} href={element.website} target='_blank' rel='noopener noreferrer'>
+    {#if element.websiteLink}
+        <a class={darkMode ? 'projects__elements__item__link dark-button' : 'projects__elements__item__link'} href={element.websiteLink} target='_blank' rel='noopener noreferrer'>
           <span>
             <p>Website</p>
             <p>Website</p>
