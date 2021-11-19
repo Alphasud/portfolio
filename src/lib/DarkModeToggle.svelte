@@ -12,7 +12,7 @@
     }
 </script>
 
-<button class={!darkMode ? "switch__light" : "switch__light dark-bulb yellow-border"} on:click={toggleDarkTheme}>
+<button aria-label="Dark mode switch" class={!darkMode ? "switch__light" : "switch__light dark-bulb yellow-border"} on:click={toggleDarkTheme}>
     <i class="fas fa-lightbulb fa-lg"></i>
 </button>
 

@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class='presentation__social'>
-        <a class='resume-icon' href={item.resumeLink} target="_blank" rel="noopener noreferrer">
+        <a aria-label="Link to resume" class='resume-icon' href={item.resumeLink} target="_blank" rel="noopener noreferrer">
             <i class="fas fa-scroll fa-2x"></i>
             <i class="fas fa-scroll fa-2x"></i>
         </a>
@@ -50,11 +50,11 @@
             <i class="fas fa-envelope fa-2x"></i>
             <i class="fas fa-envelope fa-2x"></i>
         </span>
-        <a href={item.gitHubLink} target="_blank" rel="noopener noreferrer">
+        <a aria-label="Link to gitHub account" href={item.gitHubLink} target="_blank" rel="noopener noreferrer">
             <i class="fab fa-github fa-2x"></i>
             <i class="fab fa-github fa-2x"></i>
         </a>
-        <a href={item.linkedInLink} target="_blank" rel="noopener noreferrer">
+        <a aria-label="Link to LinkedIn account" href={item.linkedInLink} target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin fa-2x"></i>
             <i class="fab fa-linkedin fa-2x"></i>
         </a>

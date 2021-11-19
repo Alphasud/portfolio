@@ -16,9 +16,11 @@
 
 <header class={isVisible ? "header blur" : "header"}>
   <DarkModeToggle />
+<ul>
   <li class:white-border={darkMode} class:selected="{current === 'fr'}" class="switch" on:click={() => {current = 'fr'; currentLang.set('french')}}>FR</li>
   <li class:white-border={darkMode} class:selected="{current === 'en'}" class="switch" on:click={() => {current = 'en'; currentLang.set('english')}}>EN</li>
   <li class:white-border={darkMode} class:selected="{current === 'es'}" class="switch" on:click={() => {current = 'es'; currentLang.set('spanish')}}>ES</li>
+</ul>
 </header>
 
 <style lang="scss"> 
@@ -34,7 +36,7 @@ header {
   margin-left: 1rem;
       li { text-decoration: none;list-style: none; }
 }
-
+ul {display: flex;padding: 0;}
 .switch {
   font-size: 1.4rem;
   border: 2px solid $dark;
