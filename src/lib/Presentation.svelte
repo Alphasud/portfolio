@@ -33,7 +33,7 @@
 <section class="{darkMode ? "presentation white-border" : "presentation"} {isVisible ? "blur" : ""}">
     <div class='presentation__top'>
         <div class='presentation__top__left'>
-            <img class='presentation__top__left__photo' src={item.profilePicture.formats.medium.url} alt={item.profilePicture.alternativeText}>
+            <img class='presentation__top__left__photo' src={item.profilePicture.formats.small.url} alt={item.profilePicture.alternativeText}>
         </div>
         <div class='presentation__top__right'>
             <h1 class='presentation__top__right__name'>{item.firstName} {item.name}</h1>

@@ -31,7 +31,7 @@ import { darkTheme, isFormVisible } from "/src/store.js";
         {#each projects as element}
         <article class='projects__elements__item'>
             <a href={element.websiteLink ? element.websiteLink : element.repoLink} class='projects__elements__item__image'target='_blank' rel='noopener noreferrer'>
-                <img src={element.projectPicture.formats.small.url} alt={element.projectPicture.alternativeText}>
+                <img src={element.projectPicture.formats.thumbnail.url} alt={element.projectPicture.alternativeText}>
             </a>
             <h2 class='projects__elements__item__title'>{element.name}</h2>
             <p class='projects__elements__item__techno'>{element.stack}</p>
